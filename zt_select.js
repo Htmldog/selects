@@ -1,13 +1,13 @@
 /*
 *@author:duzhongbo
 *@desc:
-*	2µ½¶à¸öselectµÄ¼¶Áª
-*	Êı¾İºÍÂß¼­·Ö±ğ´æ·Åµ¥¶Àjs£¬Ôö¼õ¼¶ÁªselectÊıÄ¿Ê±²»±Ø¸Ä¶¯Ö÷ÌåÂß¼­js
-*	Êı¾İjs²¿·Ö»ù±¾³ÊÏÖÔ­Ê¼Ô­Ê¼excelÊı¾İ½á¹¹£¬²»±Ø×ö¶ş´ÎÉ¸Ñ¡
+*	2åˆ°å¤šä¸ªselectçš„çº§è”
+*	æ•°æ®å’Œé€»è¾‘åˆ†åˆ«å­˜æ”¾å•ç‹¬jsï¼Œå¢å‡çº§è”selectæ•°ç›®æ—¶ä¸å¿…æ”¹åŠ¨ä¸»ä½“é€»è¾‘js
+*	æ•°æ®jséƒ¨åˆ†åŸºæœ¬å‘ˆç°åŸå§‹åŸå§‹excelæ•°æ®ç»“æ„ï¼Œä¸å¿…åšäºŒæ¬¡ç­›é€‰
 */
 (function (w) {
 w.zt = {
-//¹«¹²·½·¨
+//å…¬å…±æ–¹æ³•
     extend:function(destination, source) {
         for ( var property in source) {
             destination[property] = source[property];
@@ -59,34 +59,34 @@ w.zt = {
     }
 };
 })(window);
-//¼¶Áª
+//çº§è”
 (function (w) {
 function SelectN(){ this.prepareArguments.apply(this,arguments); }
 SelectN.prototype={
 	prepareArguments:function () {
 		var js,config,len=arguments.length;
 		var This = this;
-		if(len==3){//ÓĞ»Øµ÷º¯Êı,ĞèÒªµ¥¶À¼ÓÔØdata.jsµÄÇé¿ö(Ò»¸öÒ³ÃæÓĞ¶à¸öÁª¶¯£¬²¢ÇÒ¹²ÓÃÒ»¸ödata.js)
-			js=arguments[0];//µÚÒ»¸ö²ÎÊı±ØĞëÊÇdata.jsµÄÂ·¾¶
-			config=arguments[1];//µÚ¶ş¸ö²ÎÊı±ØĞëÊÇÉ¢ÁĞ²ÎÊı
-			This.fn=arguments[2];//µÚÈı¸ö²ÎÊı±ØĞëÊÇ»Øµ÷º¯Êı
+		if(len==3){//æœ‰å›è°ƒå‡½æ•°,éœ€è¦å•ç‹¬åŠ è½½data.jsçš„æƒ…å†µ(ä¸€ä¸ªé¡µé¢æœ‰å¤šä¸ªè”åŠ¨ï¼Œå¹¶ä¸”å…±ç”¨ä¸€ä¸ªdata.js)
+			js=arguments[0];//ç¬¬ä¸€ä¸ªå‚æ•°å¿…é¡»æ˜¯data.jsçš„è·¯å¾„
+			config=arguments[1];//ç¬¬äºŒä¸ªå‚æ•°å¿…é¡»æ˜¯æ•£åˆ—å‚æ•°
+			This.fn=arguments[2];//ç¬¬ä¸‰ä¸ªå‚æ•°å¿…é¡»æ˜¯å›è°ƒå‡½æ•°
 		    zt.loadScript(js,function () {
 		    	This.init(config);
 		    	This.fn();
 		    });
-		}else if(len==2){//Ã»ÓĞ»Øµ÷º¯Êı£¬ĞèÒªµ¥¶À¼ÓÔØjsµÄÇé¿ö(Ò»¸öÒ³ÃæÖ»ÓĞÒ»¸öÁª¶¯)
-			js=arguments[0];//µÚÒ»¸ö²ÎÊı±ØĞëÊÇdata.jsµÄÂ·¾¶
-			config=arguments[1];//µÚ¶ş¸ö²ÎÊı±ØĞëÊÇÉ¢ÁĞ²ÎÊı
+		}else if(len==2){//æ²¡æœ‰å›è°ƒå‡½æ•°ï¼Œéœ€è¦å•ç‹¬åŠ è½½jsçš„æƒ…å†µ(ä¸€ä¸ªé¡µé¢åªæœ‰ä¸€ä¸ªè”åŠ¨)
+			js=arguments[0];//ç¬¬ä¸€ä¸ªå‚æ•°å¿…é¡»æ˜¯data.jsçš„è·¯å¾„
+			config=arguments[1];//ç¬¬äºŒä¸ªå‚æ•°å¿…é¡»æ˜¯æ•£åˆ—å‚æ•°
 			zt.loadScript(js,function () {
 				This.init(config);
 			});
-		}else if(len==1){//Ã»ÓĞ»Øµ÷º¯Êı£¬Ê¹ÓÃÒ³ÃæÉÏÒÑ¾­¼ÓÔØµÄdata.jsµÄÇé¿ö(Ò»¸öÒ³ÃæÓĞ¶à¸öÁª¶¯£¬²¢ÇÒ¹²ÓÃÒ»¸ödata.js)
-			config=arguments[0];//µÚÒ»¸ö²ÎÊı±ØĞëÊÇÉ¢ÁĞ²ÎÊı
+		}else if(len==1){//æ²¡æœ‰å›è°ƒå‡½æ•°ï¼Œä½¿ç”¨é¡µé¢ä¸Šå·²ç»åŠ è½½çš„data.jsçš„æƒ…å†µ(ä¸€ä¸ªé¡µé¢æœ‰å¤šä¸ªè”åŠ¨ï¼Œå¹¶ä¸”å…±ç”¨ä¸€ä¸ªdata.js)
+			config=arguments[0];//ç¬¬ä¸€ä¸ªå‚æ•°å¿…é¡»æ˜¯æ•£åˆ—å‚æ•°
 			this.init(config);
 		}		
 	},
 	init:function(config) {
-		  this._config={//Ä¬ÈÏ²ÎÊıÉèÖÃ
+		  this._config={//é»˜è®¤å‚æ•°è®¾ç½®
 		  	data:'data',
 		  	lastAuto:false,
 		  	id:'selectN',
@@ -97,15 +97,15 @@ SelectN.prototype={
 		  	textTag:'key_'
 		  };
 		  var arg = this._config;
-		  zt.extend(arg,config);//ÓÃ»§²ÎÊıÉèÖÃ¸²¸ÇÄ¬ÈÏÉèÖÃ
-		  this.length_data = window[arg.data].length;//µÃµ½Êı¾İ×ÜÌõÊı
+		  zt.extend(arg,config);//ç”¨æˆ·å‚æ•°è®¾ç½®è¦†ç›–é»˜è®¤è®¾ç½®
+		  this.length_data = window[arg.data].length;//å¾—åˆ°æ•°æ®æ€»æ¡æ•°
 		  this.linkPage=document.getElementById(arg.id);//
-		  this.selectArr=[];//´æ·Å¼¶Áªselect
-		  this.length_select = this.selectAll();//ÉèÖÃÎ´Ñ¡ÔñµÄselect»ÒÑ¡£¬·µ»Ø¼¶ÁªselectµÄ¸öÊı
-		  this.getSelect_n(0);//³õÊ¼»¯µÚÒ»¸öselectµÄoption
-		  this.init_option();//¸øÃ¿¸öselectÒ»¸ö¡°ÇëÑ¡ÔñXXX¡±
-		  this.listen_onchange();//¸øÃ¿¸öselect°ó¶¨onchangeÊÂ¼ş
-		  if(arg.default_){//¸øselectÉèÖÃÄ¬ÈÏÑ¡Ïî,ÉèÖÃÊÇ·ñ»ÒÑ¡Ä¬ÈÏÑ¡Ïî
+		  this.selectArr=[];//å­˜æ”¾çº§è”select
+		  this.length_select = this.selectAll();//è®¾ç½®æœªé€‰æ‹©çš„selectç°é€‰ï¼Œè¿”å›çº§è”selectçš„ä¸ªæ•°
+		  this.getSelect_n(0);//åˆå§‹åŒ–ç¬¬ä¸€ä¸ªselectçš„option
+		  this.init_option();//ç»™æ¯ä¸ªselectä¸€ä¸ªâ€œè¯·é€‰æ‹©XXXâ€
+		  this.listen_onchange();//ç»™æ¯ä¸ªselectç»‘å®šonchangeäº‹ä»¶
+		  if(arg.default_){//ç»™selectè®¾ç½®é»˜è®¤é€‰é¡¹,è®¾ç½®æ˜¯å¦ç°é€‰é»˜è®¤é€‰é¡¹
 			  for(var i=0;i<arg.default_.length;i++){
 				this.setDefault(i,arg.default_[i]);
 			  }
@@ -121,7 +121,7 @@ SelectN.prototype={
 			selectArr.push(_arr);
 		}
 	}
-	//Ñ¡ÁËµÚ1¸ö²ÅÄÜÑ¡µÚ2¸ö£¬Ñ¡ÁËµÚ2¸ö²ÅÄÜÑ¡µÚ3¸ö...
+	//é€‰äº†ç¬¬1ä¸ªæ‰èƒ½é€‰ç¬¬2ä¸ªï¼Œé€‰äº†ç¬¬2ä¸ªæ‰èƒ½é€‰ç¬¬3ä¸ª...
 	for (var j = 0 , len2=selectArr.length; j < len2 ; j++) {
 		if(j!=0){
 			selectArr[j].disabled = true;
@@ -129,7 +129,7 @@ SelectN.prototype={
 	}
 	return len2; 
   },
-  getSelect_n:function(curIndex,prevSelect){//prevSelectÊÇ´¥·¢onchangeµÄselect£¬curIndex±»Áª¶¯µÄselectÏÂ±ê,
+  getSelect_n:function(curIndex,prevSelect){//prevSelectæ˜¯è§¦å‘onchangeçš„selectï¼ŒcurIndexè¢«è”åŠ¨çš„selectä¸‹æ ‡,
 	tempArr = [];
 	var check = this.checkRepeat;
  	var curSelect = this.selectArr[curIndex];
@@ -157,32 +157,32 @@ SelectN.prototype={
 	}else{
 		curOptions.add(new Option(title,''));
 	}
-	if(curIndex==0){//±»Áª¶¯µÄselectÊÇµÚ0¸öÇé¿ö
+	if(curIndex==0){//è¢«è”åŠ¨çš„selectæ˜¯ç¬¬0ä¸ªæƒ…å†µ
 		for(var i=0;i<length_data;i++){
 			var _data = data[i], 
 				text=_data[textTag+0], 
 				value = _data[valueTag+0];
-			if(!check(text)){//ÅĞ¶ÏoptionµÄtextÊÇ·ñÖØ¸´
-				value ? //ÅĞ¶ÏÊÇ·ñÓĞ¸øoptionÉèÖÃµ¥¶ÀµÄvalue
-				curOptions.add(new Option(text,value)) //ÓĞµ¥¶ÀvalueÖµµÄÇé¿ö
-				: curOptions.add(new Option(text,text));//Ã»ÓĞµ¥¶ÀvalueÖµµÄÇé¿ö
+			if(!check(text)){//åˆ¤æ–­optionçš„textæ˜¯å¦é‡å¤
+				value ? //åˆ¤æ–­æ˜¯å¦æœ‰ç»™optionè®¾ç½®å•ç‹¬çš„value
+				curOptions.add(new Option(text,value)) //æœ‰å•ç‹¬valueå€¼çš„æƒ…å†µ
+				: curOptions.add(new Option(text,text));//æ²¡æœ‰å•ç‹¬valueå€¼çš„æƒ…å†µ
 			}
 		}
-	}else{//±»Áª¶¯µÄselect²»ÊÇµÚ0¸öµÄÇé¿ö
-		var prevIndex = curIndex-1;//»ñµÃ´¥·¢onchangeµÄselectµÄÏÂ±ê
-		var prevSelectText = prevSelect.options[prevSelect.selectedIndex].text;//»ñµÃ´¥·¢onchangeµÄselect±»Ñ¡ÖĞµÄoptionµÄtext
-		for(var j=0;j<length_data;j++){//±éÀúËùÓĞÊı¾İ,ÕÒ³ö±»Ñ¡ÖĞµÄÊı¾İ,¸ø±»Áª¶¯selectÌî³ä
-			//Ò»ÌõdataÊı¾İ£¬Èç¹ûËüµÄÇ°Ò»¸öÊı¾İµ¥Ôª£¬ÊÇ±»Ñ¡ÖĞµÄ£¬ÄÇÃ´µ±Ç°Êı¾İµ¥Ôª¾Í»á±»·ÅÈëµ±Ç°select
+	}else{//è¢«è”åŠ¨çš„selectä¸æ˜¯ç¬¬0ä¸ªçš„æƒ…å†µ
+		var prevIndex = curIndex-1;//è·å¾—è§¦å‘onchangeçš„selectçš„ä¸‹æ ‡
+		var prevSelectText = prevSelect.options[prevSelect.selectedIndex].text;//è·å¾—è§¦å‘onchangeçš„selectè¢«é€‰ä¸­çš„optionçš„text
+		for(var j=0;j<length_data;j++){//éå†æ‰€æœ‰æ•°æ®,æ‰¾å‡ºè¢«é€‰ä¸­çš„æ•°æ®,ç»™è¢«è”åŠ¨selectå¡«å……
+			//ä¸€æ¡dataæ•°æ®ï¼Œå¦‚æœå®ƒçš„å‰ä¸€ä¸ªæ•°æ®å•å…ƒï¼Œæ˜¯è¢«é€‰ä¸­çš„ï¼Œé‚£ä¹ˆå½“å‰æ•°æ®å•å…ƒå°±ä¼šè¢«æ”¾å…¥å½“å‰select
 			var _data = data[j],
 				curText=_data[textTag+curIndex],
 				curValue=_data[valueTag+curIndex],
 				prevText=_data[textTag+prevIndex];
-			if(prevText==prevSelectText){//Èç¹ûµ±Ç°Êı¾İÊÇ´¥·¢onchangeµÄselectÑ¡ÖĞµÄÊı¾İ
-				if(!check(curText)) {//Êı¾İ²»¿ÉÖØ¸´
+			if(prevText==prevSelectText){//å¦‚æœå½“å‰æ•°æ®æ˜¯è§¦å‘onchangeçš„selecté€‰ä¸­çš„æ•°æ®
+				if(!check(curText)) {//æ•°æ®ä¸å¯é‡å¤
 				    curValue ? 
 					curOptions.add(new Option(curText,curValue))
 					:curOptions.add(new Option(curText,curText));
-					//Èç¹ûÓĞÉèÖÃ½«×îºóÒ»¸ö×Ö¶ÎÖµ·ÅÈëÖ¸¶¨ÈİÆ÷,²¢ÇÒ±»Áª¶¯µÄselectÊÇ×îºóÒ»¸öselect
+					//å¦‚æœæœ‰è®¾ç½®å°†æœ€åä¸€ä¸ªå­—æ®µå€¼æ”¾å…¥æŒ‡å®šå®¹å™¨,å¹¶ä¸”è¢«è”åŠ¨çš„selectæ˜¯æœ€åä¸€ä¸ªselect
 					if(outsideTag!=''&&curIndex==length_select-1){
 						outsideObj.innerHTML=curText;
 						outsideStyle.display='inline-block';
@@ -190,10 +190,10 @@ SelectN.prototype={
 				}
 			}
 		}
-		curSelect.disabled = false;//±»Áª¶¯µÄselectÈ¡Ïû»ÒÑ¡
+		curSelect.disabled = false;//è¢«è”åŠ¨çš„selectå–æ¶ˆç°é€‰
 	} 
   },
-  init_option:function(){//¸øÃ¿¸öselect¼ÓÒ»¸ö¡°ÇëÑ¡ÔñXXX¡±
+  init_option:function(){//ç»™æ¯ä¸ªselectåŠ ä¸€ä¸ªâ€œè¯·é€‰æ‹©XXXâ€
   	var arr = this.selectArr;
 	for (var i = 1,len=this.length_select; i<len; i++) {//
 		var obj = arr[i];
@@ -205,12 +205,12 @@ SelectN.prototype={
 		obj.options.add(new Option(title,''));//
 	}
   },
-  listen_onchange:function(){//¸øÃ¿¸ö¼¶Áªselect°ó¶¨Ò»¸öonchange
+  listen_onchange:function(){//ç»™æ¯ä¸ªçº§è”selectç»‘å®šä¸€ä¸ªonchange
   	var arr = this.selectArr;
 	for (var i = 0,len=this.length_select-1; i<len; i++) {//
 		var obj = arr[i];
-		var n = i+1;//µÚi¸öselect·¢Éú±ä»¯,µ¼ÖÂµÚi+1¸öselect·¢Éú±ä»¯
-		this._onchange(n,obj);//objÊÇ´¥·¢onchangeµÄselect£¬nÊÇ±»Áª¶¯selectÏÂ±ê	
+		var n = i+1;//ç¬¬iä¸ªselectå‘ç”Ÿå˜åŒ–,å¯¼è‡´ç¬¬i+1ä¸ªselectå‘ç”Ÿå˜åŒ–
+		this._onchange(n,obj);//objæ˜¯è§¦å‘onchangeçš„selectï¼Œnæ˜¯è¢«è”åŠ¨selectä¸‹æ ‡	
 	}    
   },
   _onchange:function(n,obj){
@@ -244,8 +244,8 @@ SelectN.prototype={
 			}
 		}
 		var n = selectNum+1;
-		//ÉèÖÃµ±Ç°selectÄ¬ÈÏÖµºó£¬ºóÃæµÄselectÒ²·¢Éú¸Ä±ä
-		//Èç¹ûn´óÓÚ×î´óµÄÏÂ±ê£¬Ö´ĞĞ¿Õ£»ÒòÎªÈç¹ûÖ´ĞĞ£¬this.getSelect_n(n,select)»áÑ°ÕÒÒ»¸ö²»´æÔÚµÄselect
+		//è®¾ç½®å½“å‰selecté»˜è®¤å€¼åï¼Œåé¢çš„selectä¹Ÿå‘ç”Ÿæ”¹å˜
+		//å¦‚æœnå¤§äºæœ€å¤§çš„ä¸‹æ ‡ï¼Œæ‰§è¡Œç©ºï¼›å› ä¸ºå¦‚æœæ‰§è¡Œï¼Œthis.getSelect_n(n,select)ä¼šå¯»æ‰¾ä¸€ä¸ªä¸å­˜åœ¨çš„select
 		n>(this.length_select-1)?'':this.getSelect_n(n,select);
     }
 }
